@@ -6,9 +6,9 @@
     "node": ">=20.0.0"
   },
   "type": "module",
-  "main": "index.js",
+  "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/start.js"
   },
   "repository": {
     "type": "git",
