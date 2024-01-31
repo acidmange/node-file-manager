@@ -36,13 +36,17 @@ const cliStart = async () => {
                 process.stdin.once('data', (data) => resolve(data.toString().trim()));
             });
 
-            console.log(`\nYou are currently in ${process.cwd()}`);
+            console.log(`\nYou are currently in ${process.cwd()}\n`);
 
-            if (userInput === '.exit') {
-                exitRequest = true;
-                console.log(`\nThank you for using File Manager, ${userName}, goodbye!`);
-            } else {
-                console.log(`\nnew command ${userInput} applied\n`);
+            switch (userInput) {
+                case '.exit': {
+                    exitRequest = true;
+                    console.log(`\nThank you for using File Manager, ${userName}, goodbye!`);
+                    break;
+                }
+                default: {
+                    console.log(`Invalid input\n`);
+                }
             }
         }
     } catch (err) {
