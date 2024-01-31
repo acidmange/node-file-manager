@@ -1,9 +1,14 @@
 // This is program entry point
 
 import process from 'node:process';
+import { resolve } from 'node:path';
+import os from 'node:os';
 
 const cliStart = async () => {
     try {
+        const userHomeDirectory = os.homedir();
+        process.chdir(resolve(userHomeDirectory));
+
         const pattern = '--username=';
         const fArg = process.argv.slice(2).find((arg) => arg.startsWith(pattern));
 
