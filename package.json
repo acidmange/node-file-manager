@@ -1,0 +1,28 @@
+{
+  "name": "node-file-manager",
+  "version": "1.0.0",
+  "description": "This repository is the part of nodejs-assignments https://github.com/AlreadyBored/nodejs-assignments",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acidmange/node-file-manager.git"
+  },
+  "keywords": [
+    "nodejs",
+    "assignments",
+    "acidmange"
+  ],
+  "author": "acidmange",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acidmange/node-file-manager/issues"
+  },
+  "homepage": "https://github.com/acidmange/node-file-manager#readme"
+}
