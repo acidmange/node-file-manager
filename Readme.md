@@ -55,7 +55,7 @@ List of operations and their syntax:
     | Index    |      Name     |    Type   |
     |----------|:-------------:|----------:|
     |    0     |     '.git'    | directory |
-    |    1     |  '.gitignore  |    file   |
+    |    1     | '.gitignore'  |    file   |
     |    2     | 'package.json'|    file   |
     
 - Basic operations with files
