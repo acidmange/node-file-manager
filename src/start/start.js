@@ -13,7 +13,9 @@ const cliStart = async () => {
 
         const userName = fArg.replace(pattern, '');
 
-        console.log(`Welcome to the File Manager, ${userName}!`);
+        console.log(`Welcome to the File Manager, ${userName}!\n`);
+        console.log(`You are currently in ${process.cwd()}\n`);
+
 
         let exitRequest = false;
 
@@ -28,6 +30,8 @@ const cliStart = async () => {
             const userInput = await new Promise((resolve) => {
                 process.stdin.once('data', (data) => resolve(data.toString().trim()));
             });
+
+            console.log(`\nYou are currently in ${process.cwd()}`);
 
             if (userInput === '.exit') {
                 exitRequest = true;
