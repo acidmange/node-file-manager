@@ -1,20 +1,46 @@
-// This is start program point
+// This is program entry point
 
 import process from 'node:process';
 
-const argvArr = [...process.argv];
+const cliStart = async () => {
+    try {
+        const pattern = '--username=';
+        const fArg = process.argv.slice(2).find((arg) => arg.startsWith(pattern));
 
-if (argvArr.length <= 2) {
-    throw new Error('No arguments');
-} else {
-    const argumentsArr = argvArr.slice(2);
-    const pattern = '--username=';
-    const fArg = argumentsArr[0];
+        if (!fArg) {
+            throw new Error('No username provided');
+        }
 
-    if (!fArg.includes(pattern)) {
-        throw new Error('Wrong arguments format');
-    } else {
         const userName = fArg.replace(pattern, '');
+
         console.log(`Welcome to the File Manager, ${userName}!`);
+
+        let exitRequest = false;
+
+        process.on('SIGINT', () => {
+            console.log(`\nThank you for using File Manager, ${userName}, goodbye!\n`);
+            process.exit(0);
+        });
+
+        while (!exitRequest) {
+            console.log('Enter a command (e.g., cd path_to_directory or ".exit" to exit): \n');
+
+            const userInput = await new Promise((resolve) => {
+                process.stdin.once('data', (data) => resolve(data.toString().trim()));
+            });
+
+            if (userInput === '.exit') {
+                exitRequest = true;
+                console.log(`\nThank you for using File Manager, ${userName}, goodbye!`);
+            } else {
+                console.log(`\nnew command ${userInput} applied\n`);
+            }
+        }
+    } catch (err) {
+        throw new Error(err);
+    } finally {
+        process.exit(0);
     }
-}
+};
+
+cliStart();
