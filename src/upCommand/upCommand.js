@@ -11,19 +11,30 @@ const upCommand = async (userInput) => {
         } else {
             const currentDir = process.cwd();
             const systemPlatform = process.platform;
+            const __dirname = path.dirname(fileURLToPath(import.meta.url));
             let rootDir;
             let parentDir;
 
-            if (systemPlatform === 'linux') {
-                rootDir = path.resolve('/');
-                parentDir = path.join(currentDir, '..');
-            } else if (systemPlatform === 'win32') {
-                const __dirname = path.dirname(fileURLToPath(import.meta.url));
-                rootDir = path.parse(__dirname).root;
-                parentDir = path.dirname(path.dirname(currentDir));
-            } else {
-                console.log('Your OS is not supported');
-                process.exit(0);
+            switch (systemPlatform) {
+                case 'linux': {
+                    rootDir = path.resolve('/');
+                    parentDir = path.join(currentDir, '..');
+                    break;
+                }
+                case 'win32': {
+                    rootDir = path.parse(__dirname).root;
+                    parentDir = path.dirname(currentDir);
+                    break;
+                }
+                case 'darwin': {
+                    rootDir = path.resolve('/');
+                    parentDir = path.dirname(currentDir);
+                    break;
+                }
+                default: {
+                    console.log('Your OS is not supported');
+                    process.exit(0);
+                }
             }
 
             if (currentDir !== rootDir) {
