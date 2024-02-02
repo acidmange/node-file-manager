@@ -13,7 +13,7 @@ const cliStart = async () => {
         const fArg = process.argv.slice(2).find((arg) => arg.startsWith(pattern));
 
         if (!fArg) {
-            console.log('No username provided, try again');
+            console.log('No username provided, try again e.g.,\nnpm run start -- --username=your_username\n');
             process.exit(0);
         }
 
