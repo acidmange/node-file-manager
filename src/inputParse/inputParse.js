@@ -1,19 +1,22 @@
 // Parse user arguments
 
 import { upCommand } from '../upCommand/upCommand.js';
+import { cdCommand } from '../cdCommand/cdCommand.js';
+import { pwd } from '../smallFunctions.js';
 
 const inputParse = async (userInput) => {
     try {
         const userCommand = userInput.split(' ')[0];
         const commandHandler = {
             'up': upCommand,
+            'cd': cdCommand,
         };
 
         if (commandHandler.hasOwnProperty(userCommand)) {
             commandHandler[userCommand](userInput);
         } else {
             console.log('\nwrong input');
-            console.log(`\nYou are currently in ${process.cwd()}\n`);
+            pwd();
         }
     } catch (err) {
         console.log('Operation failed inputParse');

@@ -3,6 +3,7 @@
 import process from 'node:process';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
+import { pwd } from '../smallFunctions.js';
 
 const upCommand = async (userInput) => {
     try {
@@ -39,9 +40,9 @@ const upCommand = async (userInput) => {
 
             if (currentDir !== rootDir) {
                 process.chdir(parentDir);
-                console.log(`\nYou are currently in ${process.cwd()}\n`);
+                pwd();
             } else {
-                console.log(`\nYou are currently in ${process.cwd()}\n`);
+                pwd();
             }
         }
     } catch (err) {
