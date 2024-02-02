@@ -28,7 +28,7 @@ const cliStart = async () => {
         });
 
         while (!exitRequest) {
-            console.log('Enter a command (e.g., cd path_to_directory) or exit (command .exit / Ctrl+C combination): \n');
+            console.log('Enter a command (e.g., cd "path_to_directory") or exit (command .exit / Ctrl+C combination): \n');
 
             const userInput = await new Promise((resolve) => {
                 process.stdin.once('data', (data) => resolve(data.toString().trim()));
