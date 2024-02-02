@@ -1,5 +1,15 @@
 # Assignment: File Manager
 
+## Attention!
+
+If the filename or pathname includes any spaces, they need to be backslashed with \ symbol
+
+```
+cd f/Katty\ and\ Josh/photos
+rm Big\ Whale.avi
+rn Fast\ Furious Slow\ Sluggish
+```
+
 ## Description
 
 this File Manager was made using Node.js APIs.
@@ -12,17 +22,6 @@ The File manager is able to do the following:
 - Get information about the host machine operating system
 - Perform hash calculations
 - Compress and decompress files
-
-## Attention!
-
-The user must use quotation marks "" when working with any commands that require paths or file names
-
-```
-cd "path_to_directory"
-rm "filename"
-rn "path_to_file" "new_filename"
-..etc
-```
 
 ## Details
 
@@ -40,7 +39,7 @@ List of operations and their syntax:
     ```
     - Go to dedicated folder from current directory (`path_to_directory` can be relative or absolute)
     ```bash
-    cd "path_to_directory"
+    cd path_to_directory
     ```
     - Print in console list of all files and folders in current directory. List should contain:
         - list should contain files and folder names (for files - with extension)
@@ -60,27 +59,27 @@ List of operations and their syntax:
 - Basic operations with files
     - Read file and print it's content in console (should be done using Readable stream): 
     ```bash
-    cat "path_to_file"
+    cat path_to_file
     ```
     - Create empty file in current working directory: 
     ```bash
-    add "new_file_name"
+    add new_file_name
     ```
     - Rename file (content should remain unchanged): 
     ```bash
-    rn "path_to_file" "new_filename"
+    rn path_to_file new_filename
     ```
     - Copy file (should be done using Readable and Writable streams): 
     ```bash
-    cp "path_to_file" "path_to_new_directory"
+    cp path_to_file path_to_new_directory
     ```
     - Move file (same as copy but initial file is deleted, copying part should be done using Readable and Writable streams): 
     ```bash
-    mv "path_to_file" "path_to_new_directory"
+    mv path_to_file path_to_new_directory
     ```
     - Delete file: 
     ```bash
-    rm "path_to_file"
+    rm path_to_file
     ```
 - Operating system info (prints following information in console)
     - Get EOL (default system End-Of-Line) and print it to console  
@@ -106,15 +105,15 @@ List of operations and their syntax:
 - Hash calculation  
     - Calculate hash for file and print it into console  
     ```bash
-    hash "path_to_file"
+    hash path_to_file
     ```
 - Compress and decompress operations  
     - Compress file (using Brotli algorithm, should be done using Streams API)  
     ```bash
-    compress "path_to_file" "path_to_destination"
+    compress path_to_file path_to_destination
     ```
     - Decompress file (using Brotli algorithm, should be done using Streams API)  
     ```bash
-    decompress "path_to_file" "path_to_destination"
+    decompress path_to_file path_to_destination
     ```
     
