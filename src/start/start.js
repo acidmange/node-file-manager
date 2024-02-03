@@ -4,6 +4,7 @@ import process from 'node:process';
 import { resolve } from 'node:path';
 import os from 'node:os';
 import { inputParse } from '../inputParse/inputParse.js';
+import { pwdPrompt } from '../smallFunctions.js';
 
 const cliStart = async () => {
     try {
@@ -19,8 +20,8 @@ const cliStart = async () => {
 
         const userName = fArg.replace(pattern, '');
         let exitRequest = false;
-        console.log(`Welcome to the File Manager, ${userName}!\n`);
-        console.log(`You are currently in ${process.cwd()}\n`);
+        console.log(`Welcome to the File Manager, ${userName}!`);
+        pwdPrompt();
 
         process.on('SIGINT', () => {
             console.log(`\n\nThank you for using File Manager, ${userName}, goodbye!`);
@@ -28,8 +29,6 @@ const cliStart = async () => {
         });
 
         while (!exitRequest) {
-            console.log('Enter a command (e.g., cd "path_to_directory") or exit (command .exit / Ctrl+C combination): \n');
-
             const userInput = await new Promise((resolve) => {
                 process.stdin.once('data', (data) => resolve(data.toString().trim()));
             });  
@@ -38,7 +37,7 @@ const cliStart = async () => {
                 exitRequest = true;
                 console.log(`\nThank you for using File Manager, ${userName}, goodbye!\n`);
             } else {
-                inputParse(userInput);
+                await inputParse(userInput);
             }
         }
     } catch (err) {
