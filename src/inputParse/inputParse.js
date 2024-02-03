@@ -2,7 +2,8 @@
 
 import { upCommand } from '../upCommand/upCommand.js';
 import { cdCommand } from '../cdCommand/cdCommand.js';
-import { pwd } from '../smallFunctions.js';
+import { lsCommand } from '../lsCommand/lsCommand.js';
+import { pwdPrompt } from '../smallFunctions.js';
 
 const inputParse = async (userInput) => {
     try {
@@ -10,13 +11,14 @@ const inputParse = async (userInput) => {
         const commandHandler = {
             'up': upCommand,
             'cd': cdCommand,
+            'ls': lsCommand,
         };
 
         if (commandHandler.hasOwnProperty(userCommand)) {
             commandHandler[userCommand](userInput);
         } else {
             console.log('\nwrong input');
-            pwd();
+            pwdPrompt();
         }
     } catch (err) {
         console.log('Operation failed inputParse');
