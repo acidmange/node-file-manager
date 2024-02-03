@@ -1,6 +1,6 @@
 // Change current directory to provided directory
 import * as path from 'node:path';
-import { pwd } from '../smallFunctions.js';
+import { pwdPrompt } from '../smallFunctions.js';
 
 const cdCommand = async (userInput) => {
     try {
@@ -12,18 +12,18 @@ const cdCommand = async (userInput) => {
 
         if ((!trueFormat) || ((!hasBackSlash) && (hasSpaces))) {
             console.log('\nwrong input\n');
-            pwd();
+            pwdPrompt();
             return;
         }
 
         newSecArg = (hasBackSlash) ? secondArg.replaceAll('\\ ', ' ') : secondArg;
         const absolutePath = path.resolve(process.cwd(), newSecArg);
         process.chdir(absolutePath);
-        pwd();
+        pwdPrompt();
 
     } catch (err) {
         console.log('\nOperation failed');
-        pwd();
+        pwdPrompt();
     }
 };
 
