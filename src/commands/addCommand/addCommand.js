@@ -8,13 +8,15 @@ const addCommand = async (userInput, userCommand) => {
             pwdPrompt();
             return;
         }
-
         const secondArg = resolveInput(userInput, userCommand);
+        if (!secondArg) {
+            return;
+        } else {
+            await fs.writeFile(secondArg, '');
 
-        await fs.writeFile(secondArg, '');
-
-        console.log(`\nFile "${secondArg}" created successfully`);  
-        pwdPrompt();
+            console.log(`\nFile "${secondArg}" created successfully`);
+            pwdPrompt();
+        }
 
     } catch (err) {
         console.log('\nInvalid input');
