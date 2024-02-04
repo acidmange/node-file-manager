@@ -8,6 +8,11 @@ import * as fs from 'node:fs';
 
 const catCommand = async (userInput, userCommand) => {
     try {
+        if (userInput === userCommand) {
+            console.log('\nInvalid input');
+            pwdPrompt();
+            return;
+        }
         const secondArg = resolveInput(userInput, userCommand);
         const absolutePath = path.resolve(process.cwd(), secondArg);
         const stat = await fsPromises.stat(absolutePath);
