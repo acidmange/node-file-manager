@@ -1,8 +1,6 @@
 // show file's content in console
-// cat joe\ and\ fiby
-// cat asd asd asd
 import * as path from 'node:path';
-import { pwdPrompt, resolveInput } from '../smallFunctions.js';
+import { pwdPrompt, resolveInput } from '../../smallFunctions.js';
 import * as fsPromises from 'fs/promises';
 import * as fs from 'node:fs';
 

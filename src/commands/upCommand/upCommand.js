@@ -3,7 +3,7 @@
 import process from 'node:process';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
-import { pwdPrompt } from '../smallFunctions.js';
+import { pwdPrompt } from '../../smallFunctions.js';
 
 const upCommand = async (userInput, userCommand) => {
     try {

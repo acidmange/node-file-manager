@@ -1,10 +1,11 @@
 // Parse user arguments
 
-import { upCommand } from '../upCommand/upCommand.js';
-import { cdCommand } from '../cdCommand/cdCommand.js';
-import { lsCommand } from '../lsCommand/lsCommand.js';
+import { upCommand } from '../commands/upCommand/upCommand.js';
+import { cdCommand } from '../commands/cdCommand/cdCommand.js';
+import { lsCommand } from '../commands/lsCommand/lsCommand.js';
+import { catCommand } from '../commands/catCommand/catCommand.js';
 import { pwdPrompt } from '../smallFunctions.js';
-import { catCommand } from '../catCommand/catCommand.js';
+import { addCommand } from '../commands/addCommand/addCommand.js';
 
 const inputParse = async (userInput) => {
     try {
@@ -14,6 +15,7 @@ const inputParse = async (userInput) => {
             'cd': cdCommand,
             'ls': lsCommand,
             'cat': catCommand,
+            'add': addCommand
         };
 
         if (commandHandler.hasOwnProperty(userCommand)) {

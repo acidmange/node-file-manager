@@ -1,6 +1,6 @@
 // List all files and folders in current directory
 import * as fs from 'node:fs/promises';
-import { pwdPrompt } from '../smallFunctions.js';
+import { pwdPrompt } from '../../smallFunctions.js';
 
 const lsCommand = async (userInput, userCommand) => {
     try {

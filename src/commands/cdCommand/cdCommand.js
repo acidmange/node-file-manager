@@ -1,6 +1,6 @@
 // Change current directory to provided directory
 import * as path from 'node:path';
-import { pwdPrompt, resolveInput } from '../smallFunctions.js';
+import { pwdPrompt, resolveInput } from '../../smallFunctions.js';
 
 const cdCommand = async (userInput, userCommand) => {
     try {
