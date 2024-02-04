@@ -6,6 +6,7 @@ import { lsCommand } from '../commands/lsCommand/lsCommand.js';
 import { catCommand } from '../commands/catCommand/catCommand.js';
 import { pwdPrompt } from '../smallFunctions.js';
 import { addCommand } from '../commands/addCommand/addCommand.js';
+import { rnCommand } from '../commands/rnCommand/rnCommand.js';
 
 const inputParse = async (userInput) => {
     try {
@@ -15,7 +16,8 @@ const inputParse = async (userInput) => {
             'cd': cdCommand,
             'ls': lsCommand,
             'cat': catCommand,
-            'add': addCommand
+            'add': addCommand,
+            'rn': rnCommand
         };
 
         if (commandHandler.hasOwnProperty(userCommand)) {
