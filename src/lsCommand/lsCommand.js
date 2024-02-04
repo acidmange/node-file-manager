@@ -2,11 +2,12 @@
 import * as fs from 'node:fs/promises';
 import { pwdPrompt } from '../smallFunctions.js';
 
-const lsCommand = async (userInput) => {
+const lsCommand = async (userInput, userCommand) => {
     try {
-        if (userInput !== 'ls') {
-            console.log('\nwrong input\n');
-            process.exit(0);
+        if (userInput !== userCommand) {
+            console.log('\nInvalid input');
+            pwdPrompt();
+            return;
         }
         const curDir = process.cwd();
         const files = await fs.readdir(curDir, { withFileTypes: true });
