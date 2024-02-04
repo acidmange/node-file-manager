@@ -9,6 +9,20 @@ const prompt = () => {
 const pwdPrompt = () => {
     pwd();
     prompt();
-}
+};
 
-export { pwd, prompt, pwdPrompt };
+const resolveInput = (userInput, userCommand) => {
+    const secondArg = userInput.slice(userCommand.length + 1);
+    const hasBackSlash = secondArg.includes(`\\`);
+    const hasSpaces = secondArg.includes(' ');
+
+    if ((!hasBackSlash) && (hasSpaces)) {
+        console.log('\nwrong input\n');
+        pwdPrompt();
+        return;
+    }
+ 
+    return (hasBackSlash) ? secondArg.replaceAll('\\ ', ' ') : secondArg;
+};
+
+export { pwd, prompt, pwdPrompt, resolveInput };
