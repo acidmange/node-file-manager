@@ -5,10 +5,10 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 import { pwdPrompt } from '../smallFunctions.js';
 
-const upCommand = async (userInput) => {
+const upCommand = async (userInput, userCommand) => {
     try {
-        if (userInput !== 'up') {
-            console.log('\nwrong input\n');
+        if (userInput !== userCommand) {
+            console.log('\nInvalid input\n');
             process.exit(0);
         }
         const currentDir = process.cwd();
