@@ -11,7 +11,6 @@ const rnCommand = async (userInput, userCommand) => {
         }
 
         const userArgs = userInput.slice(userCommand.length + 1);
-        const hasBackSlash = userArgs.includes(`\\`);
         const resolveArr = resolveArgs(userArgs);
 
         if (resolveArr.length === 0) {
