@@ -1,4 +1,3 @@
-// show file's content in console
 import * as path from 'node:path';
 import { pwdPrompt, resolveInput } from '../../smallFunctions.js';
 import * as fsPromises from 'fs/promises';
