@@ -17,8 +17,6 @@ const resolveInput = (userInput, userCommand) => {
     const hasSpaces = secondArg.includes(' ');
 
     if ((!hasBackSlash) && (hasSpaces)) {
-        console.log('\nInvalid input');
-        pwdPrompt();
         return;
     }
 
@@ -40,8 +38,6 @@ const findSpaceInd = (argsInput) => {
     if (index !== -1 && matchCount === 1) {
         return index;
     } else {
-        console.log('\nInvalid input');
-        pwdPrompt();
         return;
     }
 };
@@ -54,8 +50,6 @@ const resolveArgs = (userArgs) => {
     switch (hasBackSlash) {
         case false: {
             if (userArgs.split(' ').length !== 2) {
-                console.log('\nInvalid input');
-                pwdPrompt();
                 return [];
             } else {
                 [fArg, sArg] = userArgs.split(' ');

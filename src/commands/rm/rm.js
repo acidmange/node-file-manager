@@ -5,13 +5,15 @@ import { pwdPrompt, resolveInput } from '../../smallFunctions.js';
 const rmCommand = async (userInput, userCommand) => {
     try {
         let errorOccurred = false;
-        if (userInput === userCommand) {
+        if ((userInput === userCommand) && !errorOccurred) {
             errorOccurred = true;
-            console.log('\nInvalid input');
-            pwdPrompt();
-            return;
+            return { result: '\nInvalid input', err: 'yes' };
         }
         const secondArg = resolveInput(userInput, userCommand);
+        if (!resolveInput) {
+            errorOccurred = true;
+            return { result: '\nInvalid input', err: 'yes' };
+        }
         const filePath = path.resolve(process.cwd(), secondArg);
         const fileName = path.basename(filePath);
 
@@ -19,24 +21,19 @@ const rmCommand = async (userInput, userCommand) => {
             if (err && (!errorOccurred)) {
                 errorOccurred = true;
                 if (err.code === 'ENOENT') {
-                    console.log('\nInvalid input');
-                    pwdPrompt();
-                    return;
+                    errorOccurred = true;
+                    return { result: '\nInvalid input', err: 'yes' };
                 } else {
-                    console.log('\nOperation failed');
-                    pwdPrompt();
-                    return;
+                    errorOccurred = true;
+                    return { result: '\nOperation failed', err: 'yes' };
                 }
-            } else {
-                console.log(`\n${fileName} was sucessfuly removed`);
-                pwdPrompt();
-                return;
+            } else if (!errorOccurred) {
+                return { result: `\n${fileName} was sucessfuly removed`, err: 'yes'};
             }
         });
 
     } catch (err) {
-        console.log('\nOperation failed');
-        pwdPrompt();
+        return { result: '\nOperation failed', err: 'yes' };
     }
 };
 

@@ -27,7 +27,9 @@ const inputParse = async (userInput) => {
         };
 
         if (commandHandler.hasOwnProperty(userCommand)) {
-            commandHandler[userCommand](userInput, userCommand);
+            const funcResultObj = commandHandler[userCommand](userInput, userCommand);
+            console.log(funcResultObj);
+            pwdPrompt();
         } else {
             console.log('\nInvalid input');
             pwdPrompt();

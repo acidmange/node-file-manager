@@ -6,18 +6,16 @@ const cpCommand = async (userInput, userCommand) => {
     try {
         let errorOccurred = false;
 
-        if (userInput === userCommand) {
+        if ((userInput === userCommand) && !errorOccurred) {
             errorOccurred = true;
-            console.log('\nInvalid input');
-            pwdPrompt();
-            return;
+            return { result: '\nInvalid input', err: 'yes' };
         }
-
         const userArgs = userInput.slice(userCommand.length + 1);
         const resolveArr = resolveArgs(userArgs);
 
         if (resolveArr.length === 0) {
-            return;
+            errorOccurred = true;
+            return { result: '\nInvalid input', err: 'yes' }; 
         }
 
         const [firstArg, secondArg] = resolveArr;
@@ -28,14 +26,10 @@ const cpCommand = async (userInput, userCommand) => {
         readStr.on('error', () => {
             if ((!errorOccurred) && (err.code === 'ENOENT')) {
                 errorOccurred = true;
-                console.log('\nInvalid input');
-                pwdPrompt();
-                return;
+                return { result: '\nInvalid input', err: 'yes' }; 
             } else if (!errorOccurred) {
                 errorOccurred = true;
-                console.log('\nOperation failed');
-                pwdPrompt();
-                return;
+                return { result: '\nOperation failed', err: 'yes' }; 
             }
         });
 
@@ -47,35 +41,26 @@ const cpCommand = async (userInput, userCommand) => {
 
         writeStr.on('finish', () => {
             if (!errorOccurred) {
-                console.log(`${fileName} copied to ${newFilePath}`);
-                pwdPrompt();
-                return;
+                return { result: `${fileName} copied to ${newFilePath}`, err: 'no' }; 
             }
         });
 
         writeStr.on('error', (err) => {
             if ((err.code === 'EACCES') && (!errorOccurred)) {
                 errorOccurred = true;
-                console.log(`\nYou have no access to ${newDirPath}`);
-                pwdPrompt();
-                return;
+                return { result: `\nYou have no access to ${newDirPath}`, err: 'yes' }; 
             } else if ((err.code === 'ENOENT') && (!errorOccurred)) {
                 errorOccurred = true;
-                console.log('\nInvalid input');
-                pwdPrompt();
-                return;
+                return { result: '\nInvalid input', err: 'yes' }; 
             } else if (!errorOccurred) {
                 errorOccurred = true;
-                console.log('\nOperation failed');
-                pwdPrompt();
-                return;
+                return { result: '\nOperation failed', err: 'yes' }; 
             }
         });
 
     } catch (err) {
-        console.log('\nOperation failed', err);
-        console.log(err);
-        pwdPrompt();
+        errorOccurred = true;
+        return { result: '\nOperation failed', err: 'yes' };
     }
 };
 
