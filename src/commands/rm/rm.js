@@ -16,11 +16,17 @@ const rmCommand = async (userInput, userCommand) => {
         const fileName = path.basename(filePath);
 
         fs.rm(filePath, (err) => {
-            if (err) {
+            if (err && (!errorOccurred)) {
                 errorOccurred = true;
-                console.log('\nOperation failed');
-                pwdPrompt();
-                return;
+                if (err.code === 'ENOENT') {
+                    console.log('\nInvalid input');
+                    pwdPrompt();
+                    return;
+                } else {
+                    console.log('\nOperation failed');
+                    pwdPrompt();
+                    return;
+                }
             } else {
                 console.log(`\n${fileName} was sucessfuly removed`);
                 pwdPrompt();

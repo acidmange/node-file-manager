@@ -26,9 +26,14 @@ const cpCommand = async (userInput, userCommand) => {
         const readStr = fs.createReadStream(oldFilePath);
 
         readStr.on('error', () => {
-            if (!errorOccurred) {
+            if ((!errorOccurred) && (err.code === 'ENOENT')) {
                 errorOccurred = true;
                 console.log('\nInvalid input');
+                pwdPrompt();
+                return;
+            } else if (!errorOccurred) {
+                errorOccurred = true;
+                console.log('\nOperation failed');
                 pwdPrompt();
                 return;
             }
@@ -54,9 +59,14 @@ const cpCommand = async (userInput, userCommand) => {
                 console.log(`\nYou have no access to ${newDirPath}`);
                 pwdPrompt();
                 return;
+            } else if ((err.code === 'ENOENT') && (!errorOccurred)) {
+                errorOccurred = true;
+                console.log('\nInvalid input');
+                pwdPrompt();
+                return;
             } else if (!errorOccurred) {
                 errorOccurred = true;
-                console.log('\nOperation failed', err);
+                console.log('\nOperation failed');
                 pwdPrompt();
                 return;
             }

@@ -9,6 +9,7 @@ import { addCommand } from '../commands/add/add.js';
 import { rnCommand } from '../commands/rn/rn.js';
 import { cpCommand } from '../commands/cp/cp.js';
 import { rmCommand } from '../commands/rm/rm.js';
+import { mvCommand } from '../commands/mv/mv.js';
 
 const inputParse = async (userInput) => {
     try {
@@ -22,6 +23,7 @@ const inputParse = async (userInput) => {
             'rn': rnCommand,
             'cp': cpCommand,
             'rm': rmCommand,
+            'mv': mvCommand,
         };
 
         if (commandHandler.hasOwnProperty(userCommand)) {
