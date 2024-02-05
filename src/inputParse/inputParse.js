@@ -8,6 +8,7 @@ import { pwdPrompt } from '../smallFunctions.js';
 import { addCommand } from '../commands/addCommand/addCommand.js';
 import { rnCommand } from '../commands/rnCommand/rnCommand.js';
 import { cpCommand } from '../commands/cpCommand/cpCommand.js';
+import { rmCommand } from '../commands/rmCommand/rmCommand.js';
 
 const inputParse = async (userInput) => {
     try {
@@ -20,6 +21,7 @@ const inputParse = async (userInput) => {
             'add': addCommand,
             'rn': rnCommand,
             'cp': cpCommand,
+            'rm': rmCommand,
         };
 
         if (commandHandler.hasOwnProperty(userCommand)) {
