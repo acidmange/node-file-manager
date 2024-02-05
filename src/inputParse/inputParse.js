@@ -1,14 +1,14 @@
 // Parse user arguments
 
-import { upCommand } from '../commands/upCommand/upCommand.js';
-import { cdCommand } from '../commands/cdCommand/cdCommand.js';
-import { lsCommand } from '../commands/lsCommand/lsCommand.js';
-import { catCommand } from '../commands/catCommand/catCommand.js';
+import { upCommand } from '../commands/up/upCommand.js';
+import { cdCommand } from '../commands/cd/cd.js';
+import { lsCommand } from '../commands/ls/ls.js';
+import { catCommand } from '../commands/cat/cat.js';
 import { pwdPrompt } from '../smallFunctions.js';
-import { addCommand } from '../commands/addCommand/addCommand.js';
-import { rnCommand } from '../commands/rnCommand/rnCommand.js';
-import { cpCommand } from '../commands/cpCommand/cpCommand.js';
-import { rmCommand } from '../commands/rmCommand/rmCommand.js';
+import { addCommand } from '../commands/add/add.js';
+import { rnCommand } from '../commands/rn/rn.js';
+import { cpCommand } from '../commands/cp/cp.js';
+import { rmCommand } from '../commands/rm/rm.js';
 
 const inputParse = async (userInput) => {
     try {
