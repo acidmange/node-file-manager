@@ -1,119 +1,64 @@
-# Assignment: File Manager
+# 📂 Node.js File Manager
+**Pure Node.js CLI tool for advanced file operations with system diagnostics**
 
-## Attention!
-
-If the filename or pathname includes any spaces, they need to be backslashed with \ symbol
-
-```
-cd f/Katty\ and\ Josh/photos
-rm Big\ Whale.avi
-rn Fast\ Furious Slow\ Sluggish
-```
-
-## Description
-
-this File Manager was made using Node.js APIs.
-
-The File manager is able to do the following:
-
-- Work using CLI
-- Perform basic file operations (copy, move, delete, rename, etc.)
-- Utilize Streams API
-- Get information about the host machine operating system
-- Perform hash calculations
-- Compress and decompress files
-
-## Details
-
-- The program is started by npm-script `start` in following way:
-
+## 🚀 Quick Start
 ```bash
-npm run start -- --username=your_username
+npm run start -- --username=your_name
 ```
+> **Note**: Escape spaces in paths: `cd Path\ with\ Spaces`
 
-List of operations and their syntax:
-- Navigation & working directory (nwd)
-    - Go upper from current directory (when you are in the root folder this operation shouldn't change working directory)  
-    ```bash
-    up
-    ```
-    - Go to dedicated folder from current directory (`path_to_directory` can be relative or absolute)
-    ```bash
-    cd path_to_directory
-    ```
-    - Print in console list of all files and folders in current directory. List should contain:
-        - list should contain files and folder names (for files - with extension)
-        - folders and files are sorted in alphabetical order ascending, but list of folders goes first
-        - type of directory content should be marked explicitly (e.g. as a corresponding column value)
-    ```bash
-    ls
-    ```
-    Example of how `ls` command output may look like  
-    
-    | Index    |      Name     |    Type   |
-    |----------|:-------------:|----------:|
-    |    0     |     '.git'    | directory |
-    |    1     | '.gitignore'  |    file   |
-    |    2     | 'package.json'|    file   |
-    
-- Basic operations with files
-    - Read file and print it's content in console (should be done using Readable stream): 
-    ```bash
-    cat path_to_file
-    ```
-    - Create empty file in current working directory: 
-    ```bash
-    add new_file_name
-    ```
-    - Rename file (content should remain unchanged): 
-    ```bash
-    rn path_to_file new_filename
-    ```
-    - Copy file (should be done using Readable and Writable streams): 
-    ```bash
-    cp path_to_file path_to_new_directory
-    ```
-    - Move file (same as copy but initial file is deleted, copying part should be done using Readable and Writable streams): 
-    ```bash
-    mv path_to_file path_to_new_directory
-    ```
-    - Delete file: 
-    ```bash
-    rm path_to_file
-    ```
-- Operating system info (prints following information in console)
-    - Get EOL (default system End-Of-Line) and print it to console  
-    ```bash
-    os --EOL
-    ```
-    - Get host machine CPUs info (overall amount of CPUS plus model and clock rate (in GHz) for each of them) and print it to console  
-    ```bash
-    os --cpus
-    ```
-    - Get home directory and print it to console  
-    ```bash
-    os --homedir
-    ```
-    - Get current *system user name* (Do not confuse with the username that is set when the application starts) and print it to console  
-    ```bash
-    os --username
-    ```
-    - Get CPU architecture for which Node.js binary has compiled and print it to console  
-    ```bash
-    os --architecture
-    ```
-- Hash calculation  
-    - Calculate hash for file and print it into console  
-    ```bash
-    hash path_to_file
-    ```
-- Compress and decompress operations  
-    - Compress file (using Brotli algorithm, should be done using Streams API)  
-    ```bash
-    compress path_to_file path_to_destination
-    ```
-    - Decompress file (using Brotli algorithm, should be done using Streams API)  
-    ```bash
-    decompress path_to_file path_to_destination
-    ```
-    
+## 🔍 Core Commands
+
+### 🗂 Navigation
+| Command | Description          | Example                  |
+|---------|----------------------|--------------------------|
+| `up`    | Move up              | `up`                     |
+| `cd`    | Change directory     | `cd path/to/dir`         |
+| `ls`    | List contents (folders first) | `ls`          |
+
+### 📄 File Operations
+| Command | Description          | Example                  |
+|---------|----------------------|--------------------------|
+| `cat`   | Read file            | `cat file.txt`           |
+| `add`   | Create file          | `add new.txt`            |
+| `rn`    | Rename file          | `rn old.txt new.txt`     |
+| `cp`    | Copy file            | `cp file.txt backup/`    |
+| `mv`    | Move file            | `mv file.txt archive/`   |
+| `rm`    | Delete file          | `rm obsolete.txt`        |
+
+### 💻 System Info
+```bash
+os --[option]
+```
+| Option          | Info                  |
+|-----------------|-----------------------|
+| `--EOL`         | End-of-Line chars     |
+| `--cpus`        | CPU specs             |
+| `--homedir`     | Home directory        |
+| `--username`    | System user           |
+| `--architecture`| Node.js architecture  |
+
+### 🔐 Security & Compression
+| Command       | Description           | Example                  |
+|---------------|-----------------------|--------------------------|
+| `hash`        | File hash             | `hash document.pdf`      |
+| `compress`    | Brotli compression    | `compress in.txt out.br` |
+| `decompress`  | Brotli decompression  | `decompress in.br out.txt` |
+
+## ⚙️ Technical Highlights
+- **100% Node.js** (no external dependencies)
+- **Streams API** for memory-efficient operations
+- **Cross-platform** support
+- **Error-resistant** design
+- **Asynchronous** processing
+
+## 💡 Example Session
+```bash
+mkdir Projects
+cd Projects
+add demo.txt
+cp demo.txt backup/
+os --cpus
+hash demo.txt
+compress demo.txt demo.txt.br
+```
